@@ -1,0 +1,2 @@
+class PlusController < ApplicationController
+end

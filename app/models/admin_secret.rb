@@ -1,0 +1,2 @@
+class AdminSecret < ApplicationRecord
+end

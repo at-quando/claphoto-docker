@@ -1,0 +1,74 @@
+# Ignore bundler config.
+/.bundle
+vendor/bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/vue-client
+
+# Other
+config/database.yml
+.env
+coverage/
+.rspec
+public/uploads
+config/settings.local.yml
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+
+
+# compiled output
+/dist
+/tmp
+*.zip
+data/*
+/out-tsc
+
+.DS_Store
+Thumbs.db
+
+.vscode
+node_modules/
+dist/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Lock
+/package-lock.json

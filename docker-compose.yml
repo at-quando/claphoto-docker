@@ -1,0 +1,60 @@
+version: '2' 
+
+services:
+  database:
+    image: mysql:5.5
+    container_name: database
+    ports:
+      - "33061:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - .:/rails-server
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE = database
+      - MYSQL_USER = user_testdb
+      - MYSQL_PASSWORD = 123456
+
+  vuejs: # name of the first service
+    build:
+      context: vue-client
+      args:
+        - APP_DIR=/vue-frontend
+      dockerfile: Dockerfile
+    environment:
+      - APP_DIR=/vue-frontend
+    container_name: vue-frontend
+    image: vue-client
+    volumes:
+      - ./vue-client:/vue-frontend/:rw
+      - /vue-frontend/node_modules
+    ports:
+      - "8080:8080" # specify port forewarding
+    restart: always
+    
+  rails: #name of the second service
+    build: . # specify the directory of the Dockerfile
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/rails-server
+      - web_rubygems:/usr/local/bundle
+    ports:
+      - "3000:3000" #specify ports forewarding
+    restart: always
+    links:
+      - database # link this service to the database service
+
+  fullstack-nginx:
+    build:
+      context: ./web
+    container_name: fullstack-nginx
+    links:
+      - rails
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./client/dist:/usr/share/nginx/html
+volumes:
+  db_data:
+  web_rubygems:
