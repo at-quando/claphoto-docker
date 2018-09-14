@@ -1,6 +1,4 @@
 class GoogleController < ApplicationController
-  def index
-  end
 
   def create 
     #get files in folder
