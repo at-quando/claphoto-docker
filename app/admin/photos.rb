@@ -6,6 +6,7 @@ ActiveAdmin.register Photo do
     id_column
     column :photo
     column :kind
+    column :story_id
     column :created_at
     actions
   end
@@ -13,7 +14,7 @@ ActiveAdmin.register Photo do
   form(:html => { :multipart => true }) do |f|
     f.inputs do
       f.inputs "Attachment", :multipart => true do 
-        f.input :photo, as: :file
+        f.input :photo, as: :file, input_html: { multiple: true }
       end
       f.input :kind
       f.input :created_at

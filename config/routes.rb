@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  post 'admin/stories/' => 'stories#create', :as => :story_create
+  devise_for :stories, ActiveAdmin::Devise.config
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   resources :viewers
@@ -17,12 +19,16 @@ Rails.application.routes.draw do
 
   scope '/api' do
     resources :videos, only: [:show, :index]
+    resources :stories, only: [:show, :index]
     get '/viewers/:id' => 'viewers#showMobile', :as => :show_viewers_mobile
     get '/hotcostume' => 'articles#hot_costume', :as => :hot_costume
-    get 'index_costume' => 'articles#index_costume', :as => :index_costume
-    get 'index_concept' => 'articles#index_concept', :as => :index_concept
-    get 'index_posing' => 'articles#index_posing', :as => :index_posing
+    get 'index_article' => 'articles#index_article', :as => :index_article
     get 'index_price' => 'prices#index', :as => :index_price
+    get 'show_detail/:id' => 'articles#show', :as => :show_detail
+    get 'show_rand_detail' => 'articles#show_rand', :as => :show_detail_rand
+    get 'show_related_detail' => 'articles#show_related', :as => :show_detail_related
+    get 'get_products' => 'articles#show_product', :as => :show_product
+    get 'get_main_article' => 'articles#show_main_article', :as => :show_main_article
   end
 
   put 'photographers/:id/payall' => 'photographers#payall', :as => :payall_photo

@@ -36,7 +36,6 @@ class ViewersController < ApplicationController
     if ctr
       view = ctr.viewers.where(typeFile: 1)[0]
       pics = Picture.where(viewer_id: view.id)
-      binding.pry
       return render json: pics
     else
       return render json: { error: 'Cannot find!' }

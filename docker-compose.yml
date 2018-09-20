@@ -23,8 +23,8 @@ services:
       dockerfile: Dockerfile
     environment:
       - APP_DIR=/vue-frontend
-    command: webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.dev.conf.js
-    # command: webpack-dev-server --host 0.0.0.0 --inline --history-api-fallback --progress --config build/webpack.prod.conf.js
+    command: npm run dev
+    # command: npm run prod
     container_name: vue-frontend
     image: vue-client
     volumes:
@@ -36,7 +36,8 @@ services:
     
   rails: #name of the second service
     build: . # specify the directory of the Dockerfile
-    command: rails s -e production -p 3000 -b '0.0.0.0' 
+    # command: rails s -e production -p 3000 -b '0.0.0.0' 
+    command: rails s -p 3000 -b '0.0.0.0' 
     volumes:
       - .:/rails-server
       - web_rubygems:/usr/local/bundle
