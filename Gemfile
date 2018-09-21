@@ -18,6 +18,11 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'activeadmin_froala_editor'
 gem 'rack-cors', require: 'rack/cors'
+gem 'omniauth'
+gem 'declarative', '~> 0.0.10'
+gem 'omniauth-google-oauth2'
+gem 'google_drive'
+gem 'google-api-client', '~> 0.11'
 
 # Plus integrations with:
 gem 'devise'

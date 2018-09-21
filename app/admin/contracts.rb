@@ -117,6 +117,9 @@ ActiveAdmin.register Contract do
         view.input :typeFile
       end
     end
-    f.actions
+    f.actions 
+    actions defaults: true do |f|
+      link_to 'Load Picture', "/oauth2callback?id=#{resource.id}"
+    end
   end
 end

@@ -3,15 +3,14 @@ Rails.application.routes.draw do
   devise_for :stories, ActiveAdmin::Devise.config
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :viewers
+  
   resources :home
   resources :messages, only: [:create]
   resources :contracts
   resources :prices
   resources :cloths
   resources :accessories
-  resources :google, only: [:index, :create]
-  resources :photographers, only: [:index, :show, :update, :edit]
+  resources :google, only: [:index]
   resources :contract_photographers, only: [:edit]
   resources :signatures, only: [:index, :create]
   resources :schedule, only: [:index]
@@ -20,6 +19,8 @@ Rails.application.routes.draw do
   scope '/api' do
     resources :videos, only: [:show, :index]
     resources :stories, only: [:show, :index]
+    resources :viewers, only: [:show]
+    resources :photographers, only: [:index, :show, :update, :edit]
     get '/viewers/:id' => 'viewers#showMobile', :as => :show_viewers_mobile
     get '/hotcostume' => 'articles#hot_costume', :as => :hot_costume
     get 'index_article' => 'articles#index_article', :as => :index_article
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
     get 'show_related_detail' => 'articles#show_related', :as => :show_detail_related
     get 'get_products' => 'articles#show_product', :as => :show_product
     get 'get_main_article' => 'articles#show_main_article', :as => :show_main_article
+    post 'google/append/:id' => 'google#create', :as => :google_app
   end
 
   put 'photographers/:id/payall' => 'photographers#payall', :as => :payall_photo
@@ -42,6 +44,7 @@ Rails.application.routes.draw do
   post '/raws/:id/submit' => 'raws#submit', :as => 'submit_raws'
   post "/upload_image" => "upload#upload_image", :as => :upload_image
   get "/download_file/:name" => "upload#access_file", :as => :access_file, :name => /.*/
+  get "oauth2callback" => 'google#oauth', :as => :google_photos
 
   get "/" => redirect("/home")
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

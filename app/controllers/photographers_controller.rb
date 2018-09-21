@@ -1,6 +1,7 @@
 class PhotographersController < ApplicationController
   def index
-    @photographers = Photographer.all
+    @photographers = Photographer.where(favorite: 1)
+    render json: @photographers
   end
 
   def show

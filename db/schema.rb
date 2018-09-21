@@ -224,12 +224,16 @@ ActiveRecord::Schema.define(version: 20180917161032) do
     t.index ["contract_id"], name: "index_plus_on_contract_id"
   end
 
-  create_table "prices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string "num_pp"
+  create_table "prices", id: :bigint, default: nil, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string "num_pp", collation: "utf8mb4_general_ci"
     t.float "price", limit: 24
-    t.integer "num_pg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "offer", collation: "utf8mb4_general_ci"
+    t.integer "types"
+    t.float "priceFirst", limit: 24
+    t.integer "aspect"
+    t.string "takenTime", limit: 45, collation: "utf8mb4_general_ci"
   end
 
   create_table "stories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -245,7 +249,7 @@ ActiveRecord::Schema.define(version: 20180917161032) do
     t.integer "kind", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title"
+    t.string "title", collation: "utf8mb4_general_ci"
     t.text "desc"
   end
 

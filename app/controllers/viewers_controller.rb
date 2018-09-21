@@ -20,9 +20,10 @@ class ViewersController < ApplicationController
     end
     if @view
       @link = @view.viewers.where(typeFile: 1)[0].drive_link.split(',')
+      @pics = Picture.find(folder: @link[params[:page]-1])
+      render @pics
     else
-      redirect_to viewers_path
-      flash[:alert] = 'Maybe your photos are not completed or invalid!'
+      render status: 404
     end
   end
 

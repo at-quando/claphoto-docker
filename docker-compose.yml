@@ -58,6 +58,9 @@ services:
       - "443:443"
     volumes:
       - ./client/dist:/usr/share/nginx/html
+    depends_on:
+      - rails
+      - vuejs
 volumes:
   db_data:
   web_rubygems:
