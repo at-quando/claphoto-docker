@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   resources :contracts
   resources :prices
-  resources :cloths
   resources :accessories
   resources :google, only: [:index]
   resources :contract_photographers, only: [:edit]
@@ -20,13 +19,16 @@ Rails.application.routes.draw do
     resources :videos, only: [:show, :index]
     resources :stories, only: [:show, :index]
     resources :viewers, only: [:show]
+    resources :cloths, only: [:show, :index]
     resources :photographers, only: [:index, :show, :update, :edit]
+    get '/related_clothes/:id' => 'cloths#related_clothes', :as => :show_related_clothes
     get '/viewers/:id' => 'viewers#showMobile', :as => :show_viewers_mobile
     get '/hotcostume' => 'articles#hot_costume', :as => :hot_costume
     get 'index_article' => 'articles#index_article', :as => :index_article
     get 'index_price' => 'prices#index', :as => :index_price
     get 'show_detail/:id' => 'articles#show', :as => :show_detail
     get 'show_rand_detail' => 'articles#show_rand', :as => :show_detail_rand
+    get 'show_rand_except' => 'articles#show_rand_except', :as => :show_rand_except
     get 'show_related_detail' => 'articles#show_related', :as => :show_detail_related
     get 'get_products' => 'articles#show_product', :as => :show_product
     get 'get_main_article' => 'articles#show_main_article', :as => :show_main_article

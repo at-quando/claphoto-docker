@@ -33,7 +33,6 @@ class GoogleController < ApplicationController
   end
 
   def authorize_drive
-    binding.pry
     if !session[:credentials]
       client_secrets = Google::APIClient::ClientSecrets.load("#{Rails.root}/config/client_secrets.json")
       auth_client = client_secrets.to_authorization

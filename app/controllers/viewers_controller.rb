@@ -14,14 +14,14 @@ class ViewersController < ApplicationController
   def show
     @view = Contract.find_by(code: params[:id].downcase)
     if params[:page]
-      @page = params[:page]
+      page = params[:page] - 1
     else 
-      @page = 1
+      page = 0
     end
     if @view
-      @link = @view.viewers.where(typeFile: 1)[0].drive_link.split(',')
-      @pics = Picture.find(folder: @link[params[:page]-1])
-      render @pics
+      @link = @view.viewers.find_by(typeFile: 1)
+      @pics = @link.pictures
+      render json: @view, serializer:  ContractSerializer, meta: {pic: @pics, count: @link.drive_link.split(',').length }
     else
       render status: 404
     end

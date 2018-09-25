@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180917161032) do
+ActiveRecord::Schema.define(version: 20180924073820) do
 
   create_table "accessories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string "name"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20180917161032) do
     t.string "link"
     t.integer "quantity"
     t.float "funds", limit: 24, default: 0.0
+    t.integer "parent_id"
   end
 
   create_table "contract_photographers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -150,7 +151,9 @@ ActiveRecord::Schema.define(version: 20180917161032) do
     t.bigint "article_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "cloth_id"
     t.index ["article_id"], name: "index_images_on_article_id"
+    t.index ["cloth_id"], name: "index_images_on_cloth_id"
   end
 
   create_table "information", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -264,5 +267,6 @@ ActiveRecord::Schema.define(version: 20180917161032) do
     t.index ["contract_id"], name: "index_viewers_on_contract_id"
   end
 
+  add_foreign_key "images", "cloths"
   add_foreign_key "viewers", "contracts"
 end

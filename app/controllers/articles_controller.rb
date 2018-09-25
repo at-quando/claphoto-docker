@@ -39,7 +39,12 @@ class ArticlesController < ApplicationController
   end
 
   def show_rand
-    @articles_rand = Article.order("RAND()").limit(7)
+    @articles_rand = Article.order("RAND()").limit(8)
+    render json: @articles_rand, include: [:images]
+  end
+
+  def show_rand_except
+    @articles_rand = Article.where.not(kind: 0).order("RAND()").limit(8)
     render json: @articles_rand, include: [:images]
   end
 
