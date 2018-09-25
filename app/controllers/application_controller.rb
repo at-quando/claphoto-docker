@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   def response_headers(access_token, provider, uid)
     response.headers['Access-Token'] = access_token
     response.headers['Uid'] = uid
