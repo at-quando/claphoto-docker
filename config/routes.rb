@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   scope '/api' do
     resources :videos, only: [:show, :index]
+    resources :notification, only: [:index]
     resources :stories, only: [:show, :index]
     resources :viewers, only: [:show]
     resources :cloths, only: [:show, :index]
