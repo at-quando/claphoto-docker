@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config
   
   resources :home
   resources :messages, only: [:create]
@@ -47,6 +47,5 @@ Rails.application.routes.draw do
   get "/download_file/:name" => "upload#access_file", :as => :access_file, :name => /.*/
   get "oauth2callback" => 'google#oauth', :as => :google_photos
 
-  get "/" => redirect("/home")
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

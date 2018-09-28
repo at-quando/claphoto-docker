@@ -15,6 +15,7 @@ config/database.yml
 coverage/
 .rspec
 public/uploads
+public/assets
 config/settings.local.yml
 
 config/settings.local.yml
