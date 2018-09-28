@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  post 'admin/stories/' => 'stories#create', :as => :story_create
-  devise_for :stories, ActiveAdmin::Devise.config
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   

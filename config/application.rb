@@ -11,6 +11,9 @@ module Claphoto
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.middleware.use ActionDispatch::Flash
+    # config.sass.preferred_syntax = :sass
+    # config.sass.line_comments = false
+    # config.sass.cache = false
     # config.api_only = true
     # config.web_console.whitelisted_ips = '172.19.0.1'
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
