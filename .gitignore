@@ -7,7 +7,7 @@ vendor/bundle
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-/vue-client
+# /vue-client
 
 # Other
 config/database.yml

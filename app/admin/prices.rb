@@ -1,12 +1,11 @@
 ActiveAdmin.register Price do
-  permit_params :num_pp, :price, :num_pg
+  permit_params :num_pp, :price
 
   index do
     selectable_column
     id_column
     column :num_pp
     column :price
-    column :num_pg
     actions
   end
 
@@ -14,7 +13,6 @@ ActiveAdmin.register Price do
     f.inputs do
       f.input :num_pp, label: "Number of people"
       f.input :price
-      f.input :num_pg, label: "Number of photograher"
     end
     f.actions
   end
